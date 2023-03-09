@@ -1,0 +1,43 @@
+{
+  "name": "web_crt",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@element-plus/icons": "0.0.11",
+    "@panzoom/panzoom": "^4.5.0",
+    "ant-design-vue": "^3.2.10",
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "element-plus": "^2.2.4",
+    "eslint": "^8.23.1",
+    "fs": "0.0.1-security",
+    "js-md5": "^0.7.3",
+    "json-bigint": "^1.0.0",
+    "less": "^4.1.2",
+    "less-loader": "^5.0.0",
+    "lib-flexible": "^0.3.2",
+    "vue": "^3.2.19",
+    "vue-clipboard2": "^0.3.3",
+    "vue-router": "^4.1.5",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.15",
+    "@vue/cli-plugin-router": "~4.5.15",
+    "@vue/cli-plugin-vuex": "~4.5.15",
+    "@vue/cli-service": "~4.5.15",
+    "@vue/compiler-sfc": "^3.0.0",
+    "node-sass": "^4.12.0",
+    "postcss-pxtorem": "^5.1.1",
+    "sass-loader": "^8.0.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
