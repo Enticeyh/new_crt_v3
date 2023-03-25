@@ -130,4 +130,8 @@ dmypy.json
 
 .svn/
 .vscode/
+.idea/
 node_modules/
+
+# macos
+.DS_Store
