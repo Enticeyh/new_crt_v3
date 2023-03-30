@@ -12,7 +12,7 @@ def routes(app):
     new_controller = Blueprint("new_controller", url_prefix='/api/v1_0/new')  # 新版控制器http上报接口
     other = Blueprint("other", url_prefix='/api/v1_0/other')  # 其他
     test = Blueprint("test", url_prefix='/api/v1_0/test')  # 测试
-    collect = Blueprint.group(old_controller, new_controller, other)  # 蓝图组
+    collect = Blueprint.group(old_controller, new_controller, other, test)  # 蓝图组
     # 注册蓝图
     app.blueprint(collect)
 

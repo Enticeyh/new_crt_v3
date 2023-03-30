@@ -363,7 +363,7 @@ def controller_report(*_, alarm_time, controller_num, loop_num, addr_num, pass_n
                 logger.error(f'无相关控制器 controller_num：{controller_num}')
 
         # 如果控制器被屏蔽 抛弃事件
-        if controller.get('is_shielding') == 1:
+        if controller and controller.get('is_shielding') == 1:
             return
 
         alarm_statistics = 'alarm_info_statistics'  # 首页所需数据 缓存name
@@ -804,7 +804,11 @@ def controller_operate(*_, date_time, controller_num, gb_evt_type_id, snow_id, c
         if controller and controller.controller_type == 2:
             snow_id = None
 
-        description = f'{controller_name}-{gb_evt_type_name}'
+        controller_type_name = '非主控制器'
+        if controller and controller.controller_type:
+            controller_type_name = '主控制器' if controller.controller_type == 1 else '非主控制器'
+
+        description = f'{controller_type_name}-{controller_name}-{gb_evt_type_name}'
 
         # 写入控制器操作记录
         try:

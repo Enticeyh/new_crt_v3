@@ -1,3 +1,4 @@
+import os
 import datetime
 
 from . import BaseHandler, CfResponse
@@ -40,6 +41,15 @@ class AdjustTime(BaseHandler):
 
 class Reports(BaseHandler):
     async def post(self, request):
+
+        try:
+            if int(self.conn.get('nic_mode') or 0) == 0:
+                # 修改网卡协商模式
+                os.system("mii-tool -F 100baseTx-HD enp2s0")
+                self.conn.set('nic_mode', 1)
+        except Exception as e:
+            self.logger.error("修改网卡协商模式失败！")
+            self.logger.error(e)
 
         try:
             all_data = request.json.get("data")
@@ -88,6 +98,15 @@ class DeviceOperateInfo(BaseHandler):
         except Exception as e:
             self.logger.exception(e)
             self.conn.set('controller_type', 1)
+
+        try:
+            if int(self.conn.get('nic_mode') or 0) == 0:
+                # 修改网卡协商模式
+                os.system("mii-tool -F 100baseTx-HD enp2s0")
+                self.conn.set('nic_mode', 1)
+        except Exception as e:
+            self.logger.error("修改网卡协商模式失败！")
+            self.logger.error(e)
 
         try:
             all_data = request.json.get("data")

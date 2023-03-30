@@ -277,15 +277,9 @@
                         </el-input>
                     </div>
                     <div class="password">
-                        项目电话 <el-input v-model="popupData.revampMobile" clearable>
+                        项目电话 <el-input v-model="popupData.revampMobile" placeholder="请输入项目电话" clearable>
                         </el-input>
                     </div>
-                    <!-- <div class="password">
-                        &nbsp;&nbsp; 主项目 <el-select v-model="popupData.objectTypeSelect" placeholder="请选择项目主副" clearable>
-                                <el-option v-for="item in popupData.objectTypeSelectArr" :key="item.value" :label="item.label"
-                                    :value="item.value" />
-                            </el-select>
-                    </div> -->
                     <div class="password">
                         项目人员 <el-select v-model="popupData.userSelect" multiple collapse-tags collapse-tags-tooltip
                             placeholder="请选择项目人员" @change="selectFun(popupData.userSelect, 1)" @visible-change="visibleUser"
@@ -1868,18 +1862,6 @@ export default {
                     } else {
                         popupData.switchValue = true
                     }
-                    // store.state.superPassword == false
-                    // popupData.switchValueDisabled = true//不可修改
-                    // if (sessionStorage.getItem("role_id") == 1) {
-                    //     if (store.state.superPassword == true) {
-                    //         popupData.switchValueDisabled = false
-                    //     }else{
-                            
-                    //     }
-                        
-                    // } else {
-                    //     popupData.switchValueDisabled = false
-                    // }
                     if(sessionStorage.getItem("role_id") == 1){
                         popupData.switchValueDisabled = false
                     }else if(store.state.superPassword == true){
