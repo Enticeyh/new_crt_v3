@@ -398,6 +398,11 @@ class UpdateUser(BaseHandler):
             if not all([user_id]):
                 return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_LACK))
 
+            # superadmin为默认账号，不可删除
+            if user_id == 1:
+                msg = "默认用户不可修改！"
+                return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_LACK, msg=msg))
+
             # 校验密码格式
             if password and len(password) != 32:
                 msg = '修改用户，密码格式错误！'
@@ -499,6 +504,11 @@ class UpdateUser(BaseHandler):
 
             if not all([user_id]):
                 return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_LACK))
+
+            # superadmin为默认账号，不可删除
+            if user_id == 1:
+                msg = "默认用户不可删除！"
+                return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_LACK, msg=msg))
 
         except Exception as e:
             self.logger.exception(e)

@@ -133,11 +133,11 @@ def routes(app):
     other.add_route(Center.as_view(), "/center")
     # * 测试监管中心
     other.add_route(TestCenter.as_view(), "/test_center")
-    # * 智慧消防数据一键导出
+    # * 数据导出
     other.add_route(SmartIotData.as_view(), "/smart_iot_data")
-    # * 一键备份
+    # * 系统备份
     other.add_route(Backups.as_view(), "/backups")
-    # * 一件升级
+    # * 数据导入和系统升级
     other.add_route(Upgrade.as_view(), "/upgrade")
     # * 一键恢复出厂
     other.add_route(FactoryReset.as_view(), "/factory_reset")

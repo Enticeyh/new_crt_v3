@@ -1561,6 +1561,21 @@ class Upgrade(BaseHandler):
             self.logger.exception(e)
             return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_INVALID, status=500))
 
+        if upgrade_type == 1:
+            _list_dir = sorted(os.listdir(path))
+            if (_list_dir != ['crt_data.xls', 'static']) or (os.listdir(f'{path}/static') != ['photo']):
+                msg = f"导入数据包，格式错误！"
+                return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_INVALID, msg=msg, status=400))
+
+        if upgrade_type == 2:
+            # 校验超管密码 超级管理员密码规则为superpassword_<year>-<month>-<day>（如superpassword_2022-8-1） md5加密
+            now = datetime.datetime.now()
+            super_password = md5_encryption(f'{request.app.config.SUPER_PASSWORD}_{now.year}-{now.month}-{now.day}')
+
+            if f'{super_password}.txt' not in os.listdir(path):
+                msg = f"导入升级包，格式错误！"
+                return await self.write_json(CfResponse(err=ErrorCode.BUSINESS_ERR_PARAMS_INVALID, msg=msg, status=400))
+
         try:
             # 项目根目录
             root_path = request.app.config.ROOT_PATH
